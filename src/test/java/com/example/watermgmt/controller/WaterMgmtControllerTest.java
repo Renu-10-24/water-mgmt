@@ -31,16 +31,23 @@ public class WaterMgmtControllerTest {
     @MockBean
     private WaterService waterService;
 
-    private ObjectMapper objMapper= new ObjectMapper();
+    private final ObjectMapper objMapper= new ObjectMapper();
 
     @Test
     public void testMethod() throws Exception {
         //accept user input and give 200 success status
-        when()
         mockMvc.perform(post("/allot-water").contentType(MediaType.APPLICATION_JSON)
                         .content(objMapper.writeValueAsString(AllotWater.builder().apartmentType("2").corpWaterRatio(2).borewellRatio(3).build())))
                                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.baseWaterConsumedInLitres").value("900"))
                 .andExpect(jsonPath("$.baseFare").value("900"));
+    }
+
+    @Test
+    public void testMethod_invalidApartmentType() throws Exception {
+        //accept user input and give 400 failure status
+        mockMvc.perform(post("/allot-water").contentType(MediaType.APPLICATION_JSON)
+                        .content(objMapper.writeValueAsString(AllotWater.builder().apartmentType("10").corpWaterRatio(2).borewellRatio(3).build())))
+                .andExpect(status().isBadRequest()).andExpect(jsonPath("$.message").value("Not valid apartment type"));
     }
 }
