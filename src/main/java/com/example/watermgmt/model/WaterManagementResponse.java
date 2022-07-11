@@ -5,11 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AllotWaterResponse {
-    private int baseWaterConsumedInLitres;
+public class WaterManagementResponse {
+    private int baseWaterConsumed;
     private int baseFare;
 }

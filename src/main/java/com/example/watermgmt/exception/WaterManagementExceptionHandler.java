@@ -13,13 +13,15 @@ import javax.validation.ConstraintViolationException;
 public class WaterManagementExceptionHandler extends ResponseEntityExceptionHandler{
     @ExceptionHandler(value= ConstraintViolationException.class)
     @ResponseStatus(value=HttpStatus.BAD_REQUEST)
-    public @ResponseBody ErrorResponse handleConstraintViolation(ConstraintViolationException cve){
+    @ResponseBody
+    public ErrorResponse handleConstraintViolation(ConstraintViolationException cve){
         return ErrorResponse.builder().message(cve.getMessage()).build();
     }
 
 //    @ExceptionHandler(value= MethodArgumentNotValidException.class)
     @ResponseStatus(value=HttpStatus.BAD_REQUEST)
-    public @ResponseBody ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException cve){
+    @ResponseBody
+    public ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException cve){
         return ErrorResponse.builder().message(cve.getMessage()).build();
     }
 

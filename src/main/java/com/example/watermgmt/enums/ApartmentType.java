@@ -10,7 +10,7 @@ import com.example.watermgmt.exception.WaterManagementException;
 public enum ApartmentType {
 	
 	TWO_BHK(2, 3), THREE_BHK(3, 5);
-	static Map<Integer,ApartmentType> aprtTypesMap = null;
+	public static Map<Integer,ApartmentType> aprtTypesMap = null;
 	static {
 		Stream<ApartmentType> aprtStream = Stream.of(ApartmentType.values());
 		aprtTypesMap = aprtStream.collect(Collectors.toMap(a->a.getType(), a->a));
