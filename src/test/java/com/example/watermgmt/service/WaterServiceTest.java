@@ -21,6 +21,13 @@ public class WaterServiceTest {
     }
 
     @Test
+    public void testProcessAllotWaterTestGuestCount(){
+        waterService.processAddGuests(1);
+        waterService.processAllotWater(AllotWater.builder().apartmentType("2").corpWaterRatio(1).borewellRatio(2).build());
+        Assert.assertEquals(0,waterService.noOfGuests);
+    }
+
+    @Test
     public void testProcessAllotWater2bhkCalculation(){
         Assert.assertEquals(900, waterService.processAllotWater(AllotWater.builder().apartmentType("2").corpWaterRatio(1).borewellRatio(5).build()).getBaseWaterConsumedInLitres());
         Assert.assertEquals(1275, waterService.processAllotWater(AllotWater.builder().apartmentType("2").corpWaterRatio(1).borewellRatio(5).build()).getBaseFare());
@@ -32,4 +39,10 @@ public class WaterServiceTest {
         Assert.assertEquals(2125, waterService.processAllotWater(AllotWater.builder().apartmentType("3").corpWaterRatio(1).borewellRatio(5).build()).getBaseFare());
     }
 
+    @Test
+    public void testProcessAddGuests(){
+        waterService.processAddGuests(1);
+       Assert.assertEquals(3, waterService.processAddGuests(2));
+//        Assert.assertEquals(3,waterService.noOfGuests);
+    }
 }

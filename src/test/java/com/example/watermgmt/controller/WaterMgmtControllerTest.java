@@ -4,6 +4,7 @@ import com.example.watermgmt.model.AllotWater;
 import com.example.watermgmt.model.AllotWaterResponse;
 import com.example.watermgmt.service.WaterService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -55,4 +56,23 @@ public class WaterMgmtControllerTest {
                 .andExpect(status().isBadRequest());
 //                .andExpect(jsonPath("$.message").value("Not valid apartment type"));
     }
+
+    @Test
+    public void testProcessAddGuests_NoGuests() throws Exception{
+        mockMvc.perform(post("/guests").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void testProcessAddGuests_InvalidCountOfGuests() throws Exception{
+        mockMvc.perform(post("/guests/-1"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testProcessAddGuests_ValidCountOfGuests() throws Exception{
+        mockMvc.perform(post("/guests/1"))
+                .andExpect(status().isOk());
+    }
+
 }
