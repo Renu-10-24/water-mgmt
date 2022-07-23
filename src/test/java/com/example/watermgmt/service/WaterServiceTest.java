@@ -43,6 +43,8 @@ public class WaterServiceTest {
     public void testProcessAddGuests(){
         waterService.processAddGuests(1);
        Assert.assertEquals(3, waterService.processAddGuests(2));
-//        Assert.assertEquals(3,waterService.noOfGuests);
+       Assert.assertEquals(3,waterService.noOfGuests);
+       waterService.processAllotWater(AllotWater.builder().apartmentType("2").corpWaterRatio(1).borewellRatio(2).build());
+       Assert.assertEquals(0,waterService.noOfGuests);
     }
 }

@@ -22,5 +22,7 @@ public class AllotWater {
     @NotNull
     @Range(min=1,max=5,message = "Invalid Bore Ratio")
     private int borewellRatio;
+    @NotNull
+    private int bill;
 }
 

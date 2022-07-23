@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -38,6 +35,13 @@ public class WaterMgmtController {
     public ResponseEntity<Integer> allotWater(@PathVariable("noOfGuests") @Valid @Range(min=1, message = "Please enter value between 1 and 10") int noOfGuests){
         log.debug("in the controller ");
         return new ResponseEntity<>(waterService.processAddGuests(noOfGuests), HttpStatus.OK);
+    }
+
+    @GetMapping(value = {"/bill"})
+//    by default path variable is required. (required = true)
+    public ResponseEntity<Integer> bill(){
+        log.debug("in the controller ");
+        return new ResponseEntity<>(waterService.processBill(), HttpStatus.OK);
     }
 
 }

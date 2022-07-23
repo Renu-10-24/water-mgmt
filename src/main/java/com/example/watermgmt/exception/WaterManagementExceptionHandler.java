@@ -24,5 +24,11 @@ public class WaterManagementExceptionHandler extends ResponseEntityExceptionHand
     public ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException cve){
         return ErrorResponse.builder().message(cve.getMessage()).build();
     }
+    @ExceptionHandler(value= Exception.class)
+    @ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ErrorResponse handleAnyException(Exception e){
+        return ErrorResponse.builder().message(e.getMessage()).build();
+    }
 
 }

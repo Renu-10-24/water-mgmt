@@ -25,4 +25,16 @@ public int noOfGuests=0;
         this.noOfGuests += noOfGuests;
         return this.noOfGuests;
     }
-}
+//•. 0 to 500L - Rs. 2 per litre
+//•. 501L to 1500L - Rs. 3 per litre
+//•. 1501 to 3000L - Rs. 5 per litre
+//•. 3001L+ - Rs. 8 per litre
+    public int processBill(){
+        int waterConsumedByGuests = this.noOfGuests*10*30;
+        int guestBill = 0;
+        int t = 0;
+
+//            case (t<=500) :  return guestBill = 500*2;
+        return 0;
+        }
+    }
