@@ -2,6 +2,7 @@ package com.example.watermgmt.controller;
 
 import com.example.watermgmt.model.AllotWater;
 import com.example.watermgmt.model.AllotWaterResponse;
+import com.example.watermgmt.model.BillResponse;
 import com.example.watermgmt.service.WaterService;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.validator.constraints.Range;
@@ -32,14 +33,14 @@ public class WaterMgmtController {
 //    @PostMapping(value = {"/guests/{noOfGuests}","/guests"})
 @PostMapping(value = {"/guests/{noOfGuests}"})
 //    by default path variable is required. (required = true)
-    public ResponseEntity<Integer> allotWater(@PathVariable("noOfGuests") @Valid @Range(min=1, message = "Please enter value between 1 and 10") int noOfGuests){
+    public ResponseEntity<Integer> guests(@PathVariable("noOfGuests") @Valid @Range(min=1, message = "Please enter value between 1 and 10") int noOfGuests){
         log.debug("in the controller ");
         return new ResponseEntity<>(waterService.processAddGuests(noOfGuests), HttpStatus.OK);
     }
 
     @GetMapping(value = {"/bill"})
 //    by default path variable is required. (required = true)
-    public ResponseEntity<Integer> bill(){
+    public ResponseEntity<BillResponse> bill(){
         log.debug("in the controller ");
         return new ResponseEntity<>(waterService.processBill(), HttpStatus.OK);
     }

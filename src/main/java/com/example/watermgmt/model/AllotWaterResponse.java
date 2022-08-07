@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -12,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class AllotWaterResponse {
     private int baseWaterConsumedInLitres;
     private int baseFare;
+    private int totalBill;
 }

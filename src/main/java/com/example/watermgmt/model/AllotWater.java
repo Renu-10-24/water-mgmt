@@ -13,6 +13,7 @@ import javax.validation.constraints.Pattern;
 @Data
 @Builder
 public class AllotWater {
+//    private int apartmentNumber;
     @NotNull
     @Pattern(regexp = "2|3", message = "Not valid apartment type")
     private String apartmentType;
@@ -22,7 +23,5 @@ public class AllotWater {
     @NotNull
     @Range(min=1,max=5,message = "Invalid Bore Ratio")
     private int borewellRatio;
-    @NotNull
-    private int bill;
 }
 
